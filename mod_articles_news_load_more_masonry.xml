@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>News Articles Load More Masonry</name>
+	<author>Whykiki</author>
+	<creationDate>March 2018</creationDate>
+	<copyright>Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later;</license>
+	<authorEmail>info@whykiki.de</authorEmail>
+	<authorUrl>quasilectrisches-medieninstitut.de</authorUrl>
+	<version>1.0.0</version>
+	<description>MOD_WHY_LOADMORE_MASONRY_DESCRIPTION</description>
+	<updateservers>
+		<server type="extension" name="News Articles Load More" priority="1">http://downloads.whykiki.rocks/updateLoadMoreMasonry.xml</server>
+	</updateservers>
+	<files>
+		<filename module="MOD_WHY_LOADMORE_MASONRY_masonry">MOD_WHY_LOADMORE_MASONRY_masonry.php</filename>
+		<folder>tmpl</folder>
+		<folder>images</folder>
+		<folder>js</folder>
+        <folder>css</folder>
+		<folder>less</folder>
+		<folder>languages</folder>
+		<filename>helper.php</filename>
+		<filename>less.php</filename>
+	</files>
+
+	<languages>
+		<language tag="de-DE">language/de-DE/de-DE.MOD_WHY_LOADMORE_MASONRY.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.MOD_WHY_LOADMORE_MASONRY.sys.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.MOD_WHY_LOADMORE_MASONRY.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.MOD_WHY_LOADMORE_MASONRY.sys.ini</language>
+	</languages>
+
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_NEWSFLASH"/>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+						name="catid"
+						type="category"
+						label="JCATEGORY"
+						description="MOD_WHY_LOADMORE_MASONRY_FIELD_CATEGORY_DESC"
+						extension="com_content"
+						multiple="true"
+						class="multipleCategories"
+						default=""
+						size="10"
+				/>
+
+				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_CONTROL_BUTTON" />
+
+                <field
+					name="loading_type"
+					type="radio"
+					label="MOD_WHY_LOADMORE_MASONRY_LOADING_TYPE_LABEL"
+					description="MOD_WHY_LOADMORE_MASONRY_LOADING_TYPE_DESC"
+					class="btn-group btn-group-yesno"
+					default="1"
+					>
+					<option value="1">Button</option>
+					<option value="0">Scroll</option>
+				</field>
+
+				<field
+						name="filtering"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_FILTERING_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FILTERING_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field name="filter_position" showon="filtering:1" type="list" default="center" label="MOD_WHY_LOADMORE_MASONRY_FILTER_POSITION_LABEL" description="MOD_WHY_LOADMORE_MASONRY_FILTER_POSITION_DESC">
+					<option value="center">Center</option>
+					<option value="left">Left</option>
+					<option value="right">Right</option>
+				</field>
+
+				<field
+					name="item_title"
+					type="radio"
+					label="MOD_WHY_LOADMORE_MASONRY_FIELD_TITLE_LABEL"
+					description="MOD_WHY_LOADMORE_MASONRY_FIELD_TITLE_DESC"
+					class="btn-group btn-group-yesno"
+					default="1"
+					>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field
+						name="text_trigger"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_TEXT_TRIGGER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_TEXT_TRIGGER_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field
+						name="date_trigger"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_DATE_TRIGGER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_DATE_TRIGGER_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field
+						name="dateformat"
+						type="text"
+						default="d.m.Y"
+						label="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_DESC"
+						class="chzn-color"
+						showon="link_titles:1"
+				>
+				</field>
+
+				<field
+					name="link_titles"
+					type="list"
+					label="MOD_WHY_LOADMORE_MASONRY_FIELD_LINKTITLE_LABEL"
+					description="MOD_WHY_LOADMORE_MASONRY_FIELD_LINKTITLE_DESC"
+					>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+
+				<field
+					name="count"
+					type="number"
+					label="MOD_WHY_LOADMORE_MASONRY_FIELD_ITEMS_LABEL"
+					description="MOD_WHY_LOADMORE_MASONRY_FIELD_ITEMS_DESC"
+					default="4"
+				/>
+
+				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_ORDERING_BUTTON" />
+
+				<field
+					name="ordering"
+					type="list"
+					label="MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_LABEL"
+					description="MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_DESC"
+					default="a.publish_up"
+					>
+					<option value="a.publish_up">MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_PUBLISHED_DATE</option>
+					<option value="a.created">MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_CREATED_DATE</option>
+					<option value="a.modified">MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_MODIFIED_DATE</option>
+					<option value="a.ordering">MOD_WHY_LOADMORE_MASONRY_FIELD_ORDERING_ORDERING</option>
+				</field>
+
+				<field
+					name="direction"
+					type="list"
+					label="JGLOBAL_ORDER_DIRECTION_LABEL"
+					description="JGLOBAL_ORDER_DIRECTION_DESC"
+					default="1"
+					showon="ordering:a.publish_up,a.created,a.modified,a.ordering"
+					>
+					<option value="0">JGLOBAL_ORDER_ASCENDING</option>
+					<option value="1">JGLOBAL_ORDER_DESCENDING</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="MOD_WHY_LOADMORE_MASONRY_STYLING">
+				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_GENERAL_BUTTON" />
+
+				<field
+						name="image"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_FIELD_IMAGES_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FIELD_IMAGES_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field
+						name="image_margin"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_IMAGE_MARGIN_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_IMAGE_MARGIN_DESC"
+						class="btn-group btn-group-yesno"
+						default="1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field name="image_filters" showon="image:1" type="list" default="grayscale" label="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_LABEL" description="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_DESC">
+					<option value="none">No Filter</option>
+					<option value="grayscale">Grayscale(%)</option>
+					<option value="brightness">Brightness (%)</option>
+					<option value="hue-rotate">Hue Rotate (°)</option>
+					<option value="invert">Invert (%)</option>
+					<option value="opacity">Opacity (%)</option>
+					<option value="saturate">Saturate (%)</option>
+					<option value="sepia">Sepia (%)</option>
+				</field>
+
+				<field
+						name="image_filters_value"
+						type="number"
+						default="1"
+						label="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_VALUE_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_VALUE_DESC"
+						showon="image:1"
+				>
+				</field>
+
+				<field
+						name="hover_color"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_DESC"
+						class="chzn-color"
+				>
+				</field>
+
+				<field
+						name="text_length"
+						type="number"
+						label="MOD_WHY_LOADMORE_MASONRY_TEXT_LENGTH_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_TEXT_LENGTH_DESC"
+						default="100"
+				/>
+
+				<field
+						name="readmore_text"
+						type="text"
+						default="Weiterlesen"
+						label="MOD_WHY_LOADMORE_MASONRY_READMORE_TEXT_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_READMORE_TEXT_DESC"
+						class="chzn-color"
+						showon="link_titles:1"
+				>
+				</field>
+
+				<field name="readmore_style" type="list" showon="link_titles:1" default="angle-double-right" label="MOD_WHY_LOADMORE_MASONRY_READMORE_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_READMORE_STYLE_DESC">
+					<option value="none">none</option>
+					<option value="chevron-right">chevron-right</option>
+					<option value="caret-right">caret-right</option>
+					<option value="angle-right">angle-right</option>
+					<option value="arrow-right">arrow-right</option>
+					<option value="chevron-circle-right">chevron-circle-right</option>
+					<option value="arrow-circle-right">arrow-circle-right</option>
+					<option value="angle-double-right">angle-double-right</option>
+				</field>
+
+				<field name="readmore_icon_size" type="list" showon="readmore_text:" default="none" label="MOD_WHY_LOADMORE_MASONRY_READMORE_ICON_LABEL" description="MOD_WHY_LOADMORE_MASONRY_READMORE_ICON_DESC">
+					<option value="none">Keine Skalierung</option>
+					<option value="fa-2x">2-fach</option>
+					<option value="fa-3x">3-fach</option>
+					<option value="fa-4x">4-fach</option>
+					<option value="fa-5x">5-fach</option>
+				</field>
+
+
+
+				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_BOXSTYLING_BUTTON" />
+
+				<field
+						name="style_mode"
+						type="list"
+						default="0"
+						label="MOD_WHY_LOADMORE_MASONRY_STYLEMODE_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_STYLEMODE_DESC"
+				>
+					<option value="0">Responsive</option>
+					<option value="1">Pixel</option>
+				</field>
+
+				<field
+						name="box_height"
+						type="text"
+						default="500px"
+						label="MOD_WHY_LOADMORE_MASONRY_BOX_HEIGHT_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BOX_HEIGHT_DESC"
+				>
+				</field>
+
+				<field
+						name="columns"
+						type="number"
+						default="4"
+						label="MOD_WHY_LOADMORE_MASONRY_COLUMNS_VALUE_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_COLUMNS_VALUE_DESC"
+						showon="style_mode:0"
+				>
+				</field>
+
+				<field
+						name="box_width"
+						type="text"
+						default="300px"
+						label="MOD_WHY_LOADMORE_MASONRY_BOX_WIDTH_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BOX_WIDTH_DESC"
+						showon="style_mode:1"
+				>
+				</field>
+
+				<field
+						name="box_margin"
+						type="text"
+						default="15px"
+						label="MOD_WHY_LOADMORE_MASONRY_BOX_MARGIN_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BOX_MARGIN_DESC"
+						class="chzn-color"
+						showon="style_mode:1"
+				>
+				</field>
+
+				<field
+						name="box_margin_vertical"
+						type="text"
+						default="15px"
+						label="MOD_WHY_LOADMORE_MASONRY_BOX_MARGIN_VERTICAL_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BOX_MARGIN_VERTICAL_DESC"
+				>
+				</field>
+
+				<field
+						name="box_padding"
+						type="text"
+						default="15px"
+						label="MOD_WHY_LOADMORE_MASONRY_BOX_PADDING_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BOX_PADDING_DESC"
+				>
+				</field>
+
+				<field
+						name="border_radius"
+						type="text"
+						default="0px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_DESC"
+						class="chzn-color"
+				>
+				</field>
+
+				<field
+						name="border_color"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_DESC"
+						class="chzn-color"
+				>
+				</field>
+
+				<field
+						name="border_width"
+						type="text"
+						default="2px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_DESC"
+						class="chzn-color"
+						hr="true"
+				>
+				</field>
+
+				<field name="border_style" type="list" default="solid" label="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_DESC">
+					<option value="solid">Solid</option>
+					<option value="dotted">Dotted</option>
+					<option value="dashed">Dashed</option>
+					<option value="double">Double</option>
+					<option value="groove">Groove</option>
+					<option value="ridge">Ridge</option>
+					<option value="inset">Inset</option>
+					<option value="outset">Outset</option>
+					<option value="initial">Initial</option>
+					<option value="inherit">INherit</option>
+					<option value="none">None</option>
+
+				</field>
+
+
+				<field
+						name="post_background"
+						type="color"
+						default="rgba(255, 255, 255, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_POST_BG_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_LOAD_POST_TEASER_BG_DESC"
+				>
+				</field>
+
+				<field
+						name="post_font_color"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_DESC"
+				>
+				</field>
+
+				<field
+						name="post_font_size_text"
+						type="text"
+						default="13px"
+						label="MOD_WHY_LOADMORE_MASONRY_POST_FONT_SIZE_TEXT_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_SIZE_TEXT_DESC"
+				>
+				</field>
+
+				<field
+						name="post_font_color_headline"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_HEADLINE_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_HEADLINE_DESC"
+				>
+				</field>
+
+				<field
+						name="post_font_size_headline"
+						type="text"
+						default="16px"
+						label="MOD_WHY_LOADMORE_MASONRY_POST_FONT_SIZE_HEADLINE_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_SIZE_HEADLINE_DESC"
+				>
+				</field>
+
+				<field showon="loading_type:1" type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_LOADMORE_BUTTON" />
+
+				<field
+						name="color_button"
+						type="color"
+						default="rgba(255, 255, 255, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_COLOR_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_COLOR_BUTTON_DESC"
+						hr="true"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="hover_button"
+						type="color"
+						default="rgba(238, 238, 238, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_HOVER_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_HOVER_BUTTON_DESC"
+						hr="true"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="font_color_button"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_BUTTON_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="button_font_size"
+						type="text"
+						default="16px"
+						label="MOD_WHY_LOADMORE_MASONRY_BUTTON_FONT_SIZE_TEXT_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BUTTON_FONT_SIZE_TEXT_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="border_color_button"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_BUTTON_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="border_width_button"
+						type="text"
+						default="2px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_BUTTON_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
+						name="border_radius_button"
+						type="text"
+						default="0px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_BUTTON_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_BUTTON_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field showon="filtering:1" type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_FILTERING_OPTIONS" />
+
+				<field
+						name="color_filter"
+						type="color"
+						default="rgba(255, 255, 255, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_DESC"
+						class="chzn-color"
+						hr="true"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="hover_filter"
+						type="color"
+						default="rgba(238, 238, 238, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_DESC"
+						class="chzn-color"
+						hr="true"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="font_color_filter"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="font_size_filter"
+						type="text"
+						default="16px"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="border_color_filter"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="border_width_filter"
+						type="text"
+						default="2px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="border_radius_filter"
+						type="text"
+						default="0px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field
+					name="moduleclass_sfx"
+					type="textarea" rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+					default="1"
+					>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="number"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+					default="900"
+				/>
+
+				<field
+					name="cachemode"
+					type="hidden"
+					default="itemid"
+					>
+					<option value="itemid"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
