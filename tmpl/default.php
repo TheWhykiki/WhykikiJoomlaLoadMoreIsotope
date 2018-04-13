@@ -138,7 +138,6 @@ defined('_JEXEC') or die;
                     jQuery.post( settings.data_url,
                         {
                             'page': settings.start_page,
-                            'category': settings.category,
                             'count':settings.articleCount,
                             'ordering': settings.ordering,
                             'direction': settings.direction,

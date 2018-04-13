@@ -243,7 +243,7 @@
 				<field
 						name="readmore_text"
 						type="text"
-						default="Weiterlesen"
+						default=""
 						label="MOD_WHY_LOADMORE_MASONRY_READMORE_TEXT_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_READMORE_TEXT_DESC"
 						class="chzn-color"
@@ -438,6 +438,70 @@
 						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_SIZE_HEADLINE_DESC"
 				>
 				</field>
+
+                <field
+                        name="box_shadow"
+                        type="radio"
+                        label="MOD_WHY_LOADMORE_MASONRY_BOX_SHADOW_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_BOX_SHADOW_DESC"
+                        default="1"
+                >
+                    <option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+                    <option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+                </field>
+
+                <field type="spacer" showon="box_shadow:1" label="MOD_WHY_LOADMORE_HEADLINE_BOXSHADOW_BUTTON" />
+
+                <field
+                        name="shadow_color"
+                        type="color"
+                        default="rgba(255, 255, 255, 1)"
+                        format="rgba"
+                        label="MOD_WHY_LOADMORE_MASONRY_SHADOW_COLOR_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_SHADOW_COLOR_DESC"
+                        showon="box_shadow:1"
+                >
+                </field>
+
+                <field
+                        name="shadow_h"
+                        type="number"
+                        default="4"
+                        label="MOD_WHY_LOADMORE_MASONRY_SHADOW_H_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_SHADOW_H_DESC"
+                        showon="box_shadow:1"
+                >
+                </field>
+
+                <field
+                        name="shadow_v"
+                        type="number"
+                        default="4"
+                        label="MOD_WHY_LOADMORE_MASONRY_SHADOW_V_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_SHADOW_V_DESC"
+                        showon="box_shadow:1"
+                >
+                </field>
+
+                <field
+                        name="shadow_blur"
+                        type="number"
+                        default="4"
+                        label="MOD_WHY_LOADMORE_MASONRY_SHADOW_BLUR_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_SHADOW_BLUR_DESC"
+                        showon="box_shadow:1"
+                >
+                </field>
+
+                <field
+                        name="shadow_spread"
+                        type="number"
+                        default="4"
+                        label="MOD_WHY_LOADMORE_MASONRY_SHADOW_SPREAD_LABEL"
+                        description="MOD_WHY_LOADMORE_MASONRY_SHADOW_SPREAD_DESC"
+                        showon="box_shadow:1"
+                >
+                </field>
 
 				<field showon="loading_type:1" type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_LOADMORE_BUTTON" />
 

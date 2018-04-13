@@ -81,6 +81,23 @@ switch ($filterPosition) {
 		break;
 }
 
+// Define Box Shadows
+$boxShadowTrigger = $params->get('box_shadow');
+$shadowH = $params->get('shadow_h');
+$shadowV = $params->get('shadow_v');
+$shadowColor = $params->get('shadow_color');
+$shadowBlur = $params->get('shadow_blur');
+$shadowSpread = $params->get('shadow_spread');
+
+if($boxShadowTrigger == 1){
+	$boxShadow =   $shadowH."px ".$shadowV."px ".$shadowBlur."px ".$shadowSpread."px ".$shadowColor.";";
+}
+else{
+	$boxShadow = "none";
+}
+
+var_dump($boxShadow);
+
 $less = new lessc;
 $less->setVariables(array(
 	"box_height" => $params->get('box_height'),
@@ -116,6 +133,7 @@ $less->setVariables(array(
 	"button_hover_color_filter" => $params->get('hover_filter'),
 	"filterPosition" => $filterPosition,
 	"filterPadding" => $filterPadding,
+	"boxShadow" => $boxShadow
 ));
 
 
