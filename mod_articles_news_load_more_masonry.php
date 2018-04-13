@@ -53,13 +53,13 @@ if($params->get('style_mode') == 0){
 	$boxWidth = 100/$columns;
 	$boxMargin = $boxWidth/10;
 	$boxWidth = (100-($columns * $boxMargin))/$columns;
-	echo $columns*$boxMargin;
+
 	$boxWidth = "".$boxWidth."%";
 	$boxMargin = $boxMargin/2;
 	$boxMargin = "".$boxMargin."%";
 	//var_dump($boxWidth);
 	//var_dump($boxMargin*2);
-	$checker = ($columns*($boxMargin*2))+($columns*$boxWidth);
+	//$checker = ($columns*($boxMargin*2))+($columns*$boxWidth);
 	//echo $checker;
 }
 else{
@@ -96,7 +96,6 @@ else{
 	$boxShadow = "none";
 }
 
-var_dump($boxShadow);
 
 $less = new lessc;
 $less->setVariables(array(
@@ -196,14 +195,25 @@ else{
 
 $list            = ModArticlesNewsLoadMoreMasonryHelper::getList($params,$count);
 $categoriesList            = ModArticlesNewsLoadMoreMasonryHelper::getCategoriesFilters($params);
+$menuItem            = ModArticlesNewsLoadMoreMasonryHelper::getMenuItems($params);
 
 // Get base link
 $item = $list[0];
 $id = $item->catid;
 $replaceSlug = "?id=".$id;
-$baseLink = str_replace($replaceSlug, "", $item->link);
+
+if($params->get('base_item_trigger') == 0){
+	$baseLink = str_replace($replaceSlug, "", $item->link);
+}
+else{
+	$baseLink = $menuItem;
+}
+
+
+
 $slug = $item->id . '-' . $item->alias;
 $link = $baseLink."/".$slug;
+
 
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
 

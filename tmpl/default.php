@@ -71,11 +71,7 @@ defined('_JEXEC') or die;
             });
         });
 
-		<?php if($loadingType == 0): ?>
-        var scrollerTrigger = jQuery( ".scrollerTrigger<?php echo $module->id; ?>" );
-        var position = scrollerTrigger.offset();
-        var offsetTop = position.top;
-		<?php endif; ?>
+
 		<?php if($animationFlag == 1): ?>
         new WOW().init();
 		<?php endif; ?>
@@ -100,8 +96,7 @@ defined('_JEXEC') or die;
                     readMoreText: '<?php echo $readMoreText; ?>',
                     textTrigger: '<?php echo $textTrigger; ?>',
                     catsString: '<?php echo $catsString; ?>',
-                    dateTrigger: '<?php echo $dateTrigger; ?>',
-                    dateFormat: '<?php echo $dateFormat; ?>',
+                    dateTrigger: '<?php echo $dateTrigger; ?>', dateFormat: '<?php echo $dateFormat; ?>',
                     start_page 		: 1 //initial page
                 }, options);
 
@@ -118,8 +113,17 @@ defined('_JEXEC') or die;
 
 
                 jQuery(window).scroll(function() { //detact scroll
+                    var scrollerTrigger = jQuery( ".scrollerTrigger<?php echo $module->id; ?>" );
+                    var position = scrollerTrigger.offset();
+                    var offsetTop = position.top;
                     var scrollerHeight = jQuery( '.blogInner' ).height();
-                    if(parseInt(jQuery(window).scrollTop()+scrollerHeight) >= offsetTop){ //scrolled to bottom of the page
+                    console.log(scrollerHeight);
+                    console.log('Trig ' + offsetTop);
+                    var offsetter = parseInt(jQuery(window).scrollTop()) + parseInt(scrollerHeight*5);
+
+                    console.log('Scroll ' + offsetter);
+
+                    if( offsetter >= offsetTop){ //scrolled to bottom of the page
                         contents(el, settings); //load content chunk
 
                     }

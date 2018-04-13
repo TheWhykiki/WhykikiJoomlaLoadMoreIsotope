@@ -1,4 +1,7 @@
-* { box-sizing: content-box; }
+* { box-sizing: border-box; }
+body{
+  overflow-x: hidden;
+}
 
 .filterPosition{
   text-align: @filterPosition;
@@ -89,6 +92,45 @@
   -moz-box-shadow: @boxShadow;
 }
 
+
+
+
+@media (max-width: 1200px) {}
+
+@media (max-width: 992px) {
+  .element-item {
+    width: @box_width*2;
+    margin: @box_margin_vertical*2 @box_margin*2;
+  }
+}
+
+@media (max-width: 768px) {
+  .element-item {
+    width: @box_width*2;
+    margin: @box_margin_vertical*2 @box_margin*2;
+  }
+
+  .button {
+    display: inline-block;
+    width: 100%;
+    padding: @font_size_filter/2 @font_size_filter;
+    margin-bottom: 10px;
+    border-radius: @border_radius_filter;
+    border: @border_width_filter @border_style @border_color_filter;
+    background: @color_filter;
+    color: @font_color_filter;
+    font-size: @font_size_filter;
+    cursor: pointer;
+    font-size: @font_size_filter;
+  }
+}
+
+@media (max-width: 480px) {
+  .element-item {
+    width: 100%;
+    margin: @box_margin_vertical 0px;
+  }
+}
 .newsDate {
   font-size: @post_font_size_headline - 4px;
   line-height: 1.9;

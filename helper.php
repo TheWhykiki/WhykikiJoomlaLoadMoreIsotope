@@ -34,9 +34,24 @@ abstract class ModArticlesNewsLoadMoreMasonryHelper
      
 	 */
 
-	public static function getCategoriesFilters($params){
-
+	public static function getDatabase() {
 		$db = JFactory::getDbo();
+		return $db;
+	}
+
+	public static function getMenuItems($params) {
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$menuID = $params->get('base_item');
+		$query->select('alias');
+		$query->from($db->quoteName('#__menu'));
+		$query->where($db->quoteName('id')." = ".$db->quote($menuID));
+		$db->setQuery($query);
+		$menuItem =  $db->loadResult();
+		return $menuItem;
+	}
+	public static function getCategoriesFilters($params){
+		$db = ModArticlesNewsLoadMoreMasonryHelper::getDatabase();
 		$query = $db->getQuery(true);
 		$categoryIDs = $params->get('catid');
 		$catsString = "";

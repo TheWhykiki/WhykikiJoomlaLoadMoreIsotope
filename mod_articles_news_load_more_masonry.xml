@@ -13,22 +13,22 @@
 		<server type="extension" name="News Articles Load More" priority="1">http://downloads.whykiki.rocks/updateLoadMoreMasonry.xml</server>
 	</updateservers>
 	<files>
-		<filename module="MOD_WHY_LOADMORE_MASONRY_masonry">MOD_WHY_LOADMORE_MASONRY_masonry.php</filename>
+		<filename module="MOD_ARTICLES_NEWS_LOAD_MORE_MASONRY">mod_articles_news_load_more_masonry.php</filename>
 		<folder>tmpl</folder>
 		<folder>images</folder>
 		<folder>js</folder>
         <folder>css</folder>
 		<folder>less</folder>
-		<folder>languages</folder>
+		<folder>language</folder>
 		<filename>helper.php</filename>
 		<filename>less.php</filename>
 	</files>
 
 	<languages>
-		<language tag="de-DE">language/de-DE/de-DE.MOD_WHY_LOADMORE_MASONRY.ini</language>
-		<language tag="de-DE">language/de-DE/de-DE.MOD_WHY_LOADMORE_MASONRY.sys.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.MOD_WHY_LOADMORE_MASONRY.ini</language>
-		<language tag="en-GB">language/en-GB/en-GB.MOD_WHY_LOADMORE_MASONRY.sys.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.mod_articles_news_load_more_masonry.ini</language>
+		<language tag="de-DE">language/de-DE/de-DE.mod_articles_news_load_more_masonry.sys.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_articles_news_load_more_masonry.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_articles_news_load_more_masonry.sys.ini</language>
 	</languages>
 
 	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_NEWSFLASH"/>
@@ -49,7 +49,7 @@
 
 				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_CONTROL_BUTTON" />
 
-                <field
+				<field
 					name="loading_type"
 					type="radio"
 					label="MOD_WHY_LOADMORE_MASONRY_LOADING_TYPE_LABEL"
@@ -122,7 +122,7 @@
 						label="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_DESC"
 						class="chzn-color"
-						showon="link_titles:1"
+						showon="date_trigger:1"
 				>
 				</field>
 
@@ -135,6 +135,27 @@
 					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
 					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
 				</field>
+
+				<field
+						name="base_item_trigger"
+						type="radio"
+						label="MOD_WHY_LOADMORE_MASONRY_LOADING_BASEITEM_TRIGGER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BASEITEM_TRIGGER_DESC"
+						default="0"
+						showon="link_titles:1"
+				>
+					<option value="1">MOD_WHY_LOADMORE_MASONRY_YES</option>
+					<option value="0">MOD_WHY_LOADMORE_MASONRY_NO</option>
+				</field>
+
+				<field
+						name="base_item"
+						type="menuitem"
+						default="none"
+						label="MOD_WHY_LOADMORE_MASONRY_BASEITEM_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BASEITEM_DESC"
+						showon="link_titles:1"
+				/>
 
 
 				<field

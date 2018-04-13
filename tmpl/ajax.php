@@ -51,10 +51,13 @@ $query = $db->getQuery(true);
 
 $categories = 'catid IN ('.$categories.')';
 
-$query->select('a.*, b.*');
+// When loading with fields
+//$query->select('a.*, b.*');
+$query->select('a.*');
 $query->from($db->quoteName('#__content', 'a'));
-$query->join('LEFT', $db->quoteName('#__fields_values', 'b') . ' ON (' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.item_id') . ')');
-//$query->where($db->quoteName('catid')." = ".$db->quote(8));
+// When loading with fields
+//$query->join('LEFT', $db->quoteName('#__fields_values', 'b') . ' ON (' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.item_id') . ')');
+
 $query->where($categories);
 //$query->andWhere($db->quoteName('catid')." = ".$db->quote(2));
 $query->order($orderingDirection);
@@ -77,7 +80,6 @@ $row = $db->loadAssocList();
 			$date = date($dateFormat,strtotime($date));
 			$slug = $item['id'] . '-' . $item['alias'];
 			$link = $baseLink."/".$slug;
-
 			?>
 
 
