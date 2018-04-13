@@ -80,6 +80,7 @@ $row = $db->loadAssocList();
 			$date = date($dateFormat,strtotime($date));
 			$slug = $item['id'] . '-' . $item['alias'];
 			$link = $baseLink."/".$slug;
+
 			?>
 
 

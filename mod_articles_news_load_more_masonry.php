@@ -206,7 +206,7 @@ if($params->get('base_item_trigger') == 0){
 	$baseLink = str_replace($replaceSlug, "", $item->link);
 }
 else{
-	$baseLink = $menuItem;
+	$baseLink = "/".$menuItem;
 }
 
 
