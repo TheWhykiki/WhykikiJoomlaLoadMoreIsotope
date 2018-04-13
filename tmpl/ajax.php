@@ -87,7 +87,7 @@ $row = $db->loadAssocList();
             <div class=" element-item  element-item<?php echo $item['id']; ?> filterValue<?php echo $item['catid']; ?> ">
 	            <?php if($imageFlag == 1): ?>
 		            <?php if($linkTitles == 1): ?>
-                        <a class="<?php echo $item['value']; ?>" href="<?php echo $link; ?>">
+                        <a class="" href="<?php echo $link; ?>">
 		            <?php endif; ?>
                     <img class="blogImage blogImageLarger" src="/<?php echo $introImage; ?>" />
 		            <?php if($linkTitles == 1): ?>
