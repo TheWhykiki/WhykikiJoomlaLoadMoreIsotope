@@ -33,7 +33,6 @@ defined('_JEXEC') or die;
 
 <script type="text/javascript">
     jQuery(document).ready(function(){
-
         var $grid = jQuery('.grid<?php echo $module->id; ?>').isotope({
             itemSelector: '.element-item',
             layoutMode: 'fitRows'
@@ -71,32 +70,14 @@ defined('_JEXEC') or die;
             });
         });
 
-
-		<?php if($animationFlag == 1): ?>
-        new WOW().init();
-		<?php endif; ?>
-
         (function(jQuery){
             jQuery.fn.loaddata = function(options) {// Settings
                 var settings = jQuery.extend({
                     loading_gif_url	: '/modules/mod_articles_news_load_more/images/ajax-loader.gif', //url to loading gif
                     //end_record_text	: 'No more records found!', //no more records to load
                     data_url 		: '/modules/mod_articles_news_load_more_masonry/tmpl/ajax.php', //url to PHP page
-                    ordering: '<?php echo $ordering; ?>',
-                    direction: '<?php echo $orderingDirection; ?>',
-                    spotlight: '<?php echo $spotlight; ?>',
-                    articleCount: '<?php echo $count; ?>',
-                    baseLink: '<?php echo $baseLink; ?>',
-                    titleFlag: '<?php echo $titleFlag; ?>',
-                    imageFlag: '<?php echo $imageFlag; ?>',
-                    linkTitles: '<?php echo $link_titles; ?>',
-                    textLength: '<?php echo $textLength; ?>',
-                    readMoreStylePost: '<?php echo $readMoreStylePost; ?>',
-                    readMoreIconSize: '<?php echo $readMoreIconSize; ?>',
-                    readMoreText: '<?php echo $readMoreText; ?>',
-                    textTrigger: '<?php echo $textTrigger; ?>',
-                    catsString: '<?php echo $catsString; ?>',
-                    dateTrigger: '<?php echo $dateTrigger; ?>', dateFormat: '<?php echo $dateFormat; ?>',
+                    moduleID: '<?php echo $moduleID; ?>',
+                    menuItem: '<?php echo $menuItem; ?>',
                     start_page 		: 1 //initial page
                 }, options);
 
@@ -142,27 +123,8 @@ defined('_JEXEC') or die;
                     jQuery.post( settings.data_url,
                         {
                             'page': settings.start_page,
-                            'count':settings.articleCount,
-                            'ordering': settings.ordering,
-                            'direction': settings.direction,
-                            'spotlight': settings.spotlight,
-                            'baseLink': settings.baseLink,
-                            'titleFlag': settings.titleFlag,
-                            'linkTitles': settings.linkTitles,
-                            'imageFlag': settings.imageFlag,
-                            'textLength': settings.textLength,
-                            'animationFlag': settings.animationFlag,
-                            'animationPosts': settings.animationPosts,
-                            'animationDelayPost': settings.animationDelayPost,
-                            'animationSpeedPost': settings.animationSpeedPost,
-                            'columnsDesktop': settings.columnsDesktop,
-                            'readMoreStylePost': settings.readMoreStylePost,
-                            'readMoreText': settings.readMoreText,
-                            'readMoreIconSize': settings.readMoreIconSize,
-                            'textTrigger': settings.textTrigger,
-                            'catsString': settings.catsString,
-                            'dateTrigger': settings.dateTrigger,
-                            'dateFormat': settings.dateFormat
+                            'moduleID': settings.moduleID,
+                            'menuItem': settings.menuItem
                         },
 
                         function(data){ //jQuery Ajax post

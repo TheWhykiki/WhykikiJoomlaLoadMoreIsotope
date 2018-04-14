@@ -118,10 +118,10 @@
 				<field
 						name="dateformat"
 						type="text"
-						default="d.m.Y"
+						default="%A, %d.%m.%Y"
+						filter="raw"
 						label="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_DATEFORMAT_DESC"
-						class="chzn-color"
 						showon="date_trigger:1"
 				>
 				</field>

@@ -22,7 +22,6 @@ if ( !class_exists( 'lessc' ) ) {
 	require "less.php";
 }
 
-
 // Define image filters
 
 if($params->get('image_filters') == "none"){
@@ -152,11 +151,7 @@ $document->addScript('https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.j
 $count    = $params->get('count');
 
 $categoryIDs = $params->get('catid');
-$catsString = "";
-foreach($categoryIDs as $catid){
-	$catsString .= $catid.",";
-}
-$catsString=rtrim($catsString,", ");
+
 
 $ordering = $params->get('ordering');
 $orderingDirection = $params->get('direction');
@@ -165,10 +160,6 @@ $link_titles = $params->get('link_titles');
 $imageFlag = $params->get('image');
 $titleFlag = $params->get('item_title');
 $textLength = $params->get('text_length');
-$textLengthTeaser = $params->get('text_length_teaser');
-$animationFlag = $params->get('animation');
-$animationTeaser = $params->get('animation_teaser');
-$animationPosts = $params->get('animation_posts');
 $loadingType = $params->get('loading_type');
 $boxHeight = $params->get('box_height');
 $readMoreStyle = $params->get('readmore_style');
@@ -178,19 +169,9 @@ $textTrigger = $params->get('text_trigger');
 $dateTrigger = $params->get('date_trigger');
 $filtering = $params->get('filtering');
 $dateFormat = $params->get('dateformat');
+$moduleID = $module->id;
 
-if($readMoreText != ''){
-	$readMoreIconSize = '';
-}
 
-if($readMoreStyle == 'none'){
-	$readMoreStylePost = "";
-	$readMoreStyleTeaser = "";
-}
-else{
-	$readMoreStylePost = '<i class="fas '.$readMoreIconSize.' fa fa-'.$readMoreStyle.'"></i>';
-	$readMoreStyleTeaser = '<i class="fas '.$readMoreIconSize.' fa fa fa-'.$readMoreStyle.'"></i>';
-}
 // Get list of items
 
 $list            = ModArticlesNewsLoadMoreMasonryHelper::getList($params,$count);
@@ -203,17 +184,11 @@ $id = $item->catid;
 $replaceSlug = "?id=".$id;
 
 if($params->get('base_item_trigger') == 0){
-	$baseLink = str_replace($replaceSlug, "", $item->link);
+	$menuItem = str_replace($replaceSlug, "", $item->link);
 }
 else{
-	$baseLink = "/".$menuItem;
+	$menuItem = $menuItem;
 }
-
-
-
-$slug = $item->id . '-' . $item->alias;
-$link = $baseLink."/".$slug;
-
 
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');
 

@@ -8,12 +8,22 @@ require_once ( JPATH_BASE .'/includes/framework.php' );
 $app = JFactory::getApplication('site');
 $db = JFactory::getDbo();
 
+// Get module params
+
+$moduleID = $app->input->post->get('moduleID');
+$moduleQuery = $db->getQuery(true);
+$moduleQuery->select('a.*');
+$moduleQuery->from($db->quoteName('#__modules', 'a'));
+$moduleQuery->where($db->quoteName('id') . ' = '. $db->quote($moduleID));
+$db->setQuery($moduleQuery);
+$modules = $db->loadObject();
+$params = json_decode($modules->params);
 
 
-$ordering = $app->input->post->get('ordering');
+$ordering = $params->ordering;
 $ordering = str_replace("a.", "", $ordering);
 
-$directionState = $app->input->post->get('direction');
+$directionState = $params->direction;
 if($directionState == 0){
 	$direction = 'ASC';
 }
@@ -23,25 +33,44 @@ if($directionState == 1){
 $orderingDirection = $ordering." ".$direction;
 
 $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH);
-$categories = $_POST["catsString"];
-$spotlight = $app->input->post->get('spotlight');
-$baseLink = $_POST['baseLink'];
-$linkTitles = $app->input->post->get('linkTitles');
-$titleFlag = $app->input->post->get('titleFlag');
-$imageFlag = $app->input->post->get('imageFlag');
-$textLength = $app->input->post->get('textLength');
-$readMoreStylePost = $_POST['readMoreStylePost'];
-$readMoreText  = $app->input->post->get('readMoreText');
-$textTrigger  = $app->input->post->get('textTrigger');
-$dateTrigger  = $app->input->post->get('dateTrigger');
-$dateFormat  = $app->input->post->get('dateFormat');
+
+$categoryIDs = $params->catid;
+$catsString = "";
+foreach($categoryIDs as $catid){
+	$catsString .= $catid.",";
+}
+$catsString=rtrim($catsString,", ");
+$categories = $catsString;
+
+$linkTitles = $params->link_titles;
+$titleFlag = $params->item_title;
+$imageFlag = $params->image;
+$textLength = $params->text_length;
+$readMoreStylePost = $params->readmore_style;
+$readMoreText  = $params->readmore_text;
+$textTrigger  = $params->text_trigger;
+$dateTrigger  = $params->date_trigger;
+$dateFormat = $params->dateformat;
+$readMoreStyle = $params->readmore_style;
+$readMoreIconSize = $params->readmore_icon_size;
+
+if($readMoreText != ''){
+	$readMoreIconSize = '';
+}
+
+if($readMoreStyle == 'none'){
+	$readMoreStylePost = "";
+}
+else{
+	$readMoreStylePost = '<i class="fas '.$readMoreIconSize.' fa fa-'.$readMoreStyle.'"></i>';
+}
 
 //throw HTTP error if page number is not valid
 if(!is_numeric($page_number)){
 	header('HTTP/1.1 500 Invalid page number!');
 	exit;
 }
-$item_per_page = $app->input->post->get('count');
+$item_per_page = $params->count;
 
 //get current starting point of records
 $position = (($page_number-1) * $item_per_page);
@@ -57,14 +86,21 @@ $query->select('a.*');
 $query->from($db->quoteName('#__content', 'a'));
 // When loading with fields
 //$query->join('LEFT', $db->quoteName('#__fields_values', 'b') . ' ON (' . $db->quoteName('a.id') . ' = ' . $db->quoteName('b.item_id') . ')');
-
 $query->where($categories);
 //$query->andWhere($db->quoteName('catid')." = ".$db->quote(2));
 $query->order($orderingDirection);
 $query->setLimit($item_per_page);
 $db->setQuery($query,$position,$item_per_page);
-
 $row = $db->loadAssocList();
+
+
+$text = "l .\jS \of F Y h:i:s A";
+$muster = "/[^A-Z0-9\/\\.]/";
+$textNeu = preg_replace($muster, "", $text);
+
+//$replaceSlug = "?id=".$id;
+
+
 
 ?>
 
@@ -73,12 +109,20 @@ $row = $db->loadAssocList();
 		<?php foreach ($row as $item): ?>
 			<?php
 			// Vars
+			setlocale (LC_ALL, 'de_DE');
 			$images = json_decode($item['images']);
 			$introImage = $images->image_intro;
 			$introText = $item['introtext'];
 			$date = $item['publish_up'];
-			$date = date($dateFormat,strtotime($date));
+			$timestamp = strtotime($date);
+			//setlocale(LC_TIME, "en_GB");
+			$date =  strftime($dateFormat, $timestamp);
 			$slug = $item['id'] . '-' . $item['alias'];
+			$replaceSlug = "?id=".$item['id'];
+			$menuItem  = $app->input->post->get('menuItem');
+
+			$baseLink = "/".$menuItem;
+
 			$link = $baseLink."/".$slug;
 
 			?>
@@ -91,8 +135,7 @@ $row = $db->loadAssocList();
                         <a class="" href="<?php echo $link; ?>">
 		            <?php endif; ?>
                     <img class="blogImage blogImageLarger" src="/<?php echo $introImage; ?>" />
-		            <?php if($linkTitles == 1): ?>
-                        </a>
+		            <?php if($linkTitles == 1): ?></a>
 		            <?php endif; ?>
 	            <?php endif; ?>
                 <div class="blogInner">
