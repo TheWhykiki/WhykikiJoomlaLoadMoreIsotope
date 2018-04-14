@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later;</license>
 	<authorEmail>info@whykiki.de</authorEmail>
 	<authorUrl>quasilectrisches-medieninstitut.de</authorUrl>
-	<version>1.0.0</version>
+	<version>1.0.2</version>
 	<description>MOD_WHY_LOADMORE_MASONRY_DESCRIPTION</description>
 	<updateservers>
 		<server type="extension" name="News Articles Load More" priority="1">http://downloads.whykiki.rocks/updateLoadMoreMasonry.xml</server>
@@ -291,6 +291,112 @@
 					<option value="fa-5x">5-fach</option>
 				</field>
 
+				<field showon="filtering:1" type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_FILTERING_OPTIONS" />
+
+				<field
+						name="color_filter"
+						type="color"
+						default="rgba(255, 255, 255, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_DESC"
+						class="chzn-color"
+						hr="true"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="hover_filter"
+						type="color"
+						default="rgba(238, 238, 238, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_DESC"
+						class="chzn-color"
+						hr="true"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="font_color_filter"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="font_hover_color_filter"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_HOVER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_HOVER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="font_size_filter"
+						type="text"
+						default="16px"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="border_color_filter"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field
+						name="border_width_filter"
+						type="text"
+						default="2px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+				<field name="border_style_filter" type="list" default="solid" label="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_DESC">
+					<option value="solid">Solid</option>
+					<option value="dotted">Dotted</option>
+					<option value="dashed">Dashed</option>
+					<option value="double">Double</option>
+					<option value="groove">Groove</option>
+					<option value="ridge">Ridge</option>
+					<option value="inset">Inset</option>
+					<option value="outset">Outset</option>
+					<option value="initial">Initial</option>
+					<option value="inherit">INherit</option>
+					<option value="none">None</option>
+				</field>
+
+				<field
+						name="border_radius_filter"
+						type="text"
+						default="0px"
+						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_DESC"
+						showon="filtering:1"
+				>
+				</field>
+
+
 
 
 				<field type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_BOXSTYLING_BUTTON" />
@@ -396,7 +502,7 @@
 				>
 				</field>
 
-				<field name="border_style" type="list" default="solid" label="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_DESC">
+				<field name="border_style_posts" type="list" default="solid" label="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_DESC">
 					<option value="solid">Solid</option>
 					<option value="dotted">Dotted</option>
 					<option value="dashed">Dashed</option>
@@ -408,7 +514,6 @@
 					<option value="initial">Initial</option>
 					<option value="inherit">INherit</option>
 					<option value="none">None</option>
-
 				</field>
 
 
@@ -562,6 +667,17 @@
 				</field>
 
 				<field
+						name="font_hover_color_button"
+						type="color"
+						default="rgba(0, 0, 0, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_FONT_HOVER_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_FONT_HOVER_DESC"
+						showon="loading_type:1"
+				>
+				</field>
+
+				<field
 						name="button_font_size"
 						type="text"
 						default="16px"
@@ -592,6 +708,20 @@
 				>
 				</field>
 
+				<field name="border_style_loadmore" type="list" default="solid" label="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_LABEL" description="MOD_WHY_LOADMORE_MASONRY_BORDER_STYLE_DESC">
+					<option value="solid">Solid</option>
+					<option value="dotted">Dotted</option>
+					<option value="dashed">Dashed</option>
+					<option value="double">Double</option>
+					<option value="groove">Groove</option>
+					<option value="ridge">Ridge</option>
+					<option value="inset">Inset</option>
+					<option value="outset">Outset</option>
+					<option value="initial">Initial</option>
+					<option value="inherit">INherit</option>
+					<option value="none">None</option>
+				</field>
+
 				<field
 						name="border_radius_button"
 						type="text"
@@ -599,86 +729,6 @@
 						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_BUTTON_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_BUTTON_DESC"
 						showon="loading_type:1"
-				>
-				</field>
-
-				<field showon="filtering:1" type="spacer" label="MOD_WHY_LOADMORE_HEADLINE_FILTERING_OPTIONS" />
-
-				<field
-						name="color_filter"
-						type="color"
-						default="rgba(255, 255, 255, 1)"
-						format="rgba"
-						label="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_COLOR_FILTER_DESC"
-						class="chzn-color"
-						hr="true"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="hover_filter"
-						type="color"
-						default="rgba(238, 238, 238, 1)"
-						format="rgba"
-						label="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_HOVER_FILTER_DESC"
-						class="chzn-color"
-						hr="true"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="font_color_filter"
-						type="color"
-						default="rgba(0, 0, 0, 1)"
-						format="rgba"
-						label="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_FONT_COLOR_FILTER_DESC"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="font_size_filter"
-						type="text"
-						default="16px"
-						label="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_FONT_SIZE_FILTER_DESC"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="border_color_filter"
-						type="color"
-						default="rgba(136, 136, 136, 1)"
-						format="rgba"
-						label="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_BORDER_COLOR_FILTER_DESC"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="border_width_filter"
-						type="text"
-						default="2px"
-						label="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_BORDER_WIDTH_FILTER_DESC"
-						showon="filtering:1"
-				>
-				</field>
-
-				<field
-						name="border_radius_filter"
-						type="text"
-						default="0px"
-						label="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_BORDER_RADIUS_FILTER_DESC"
-						showon="filtering:1"
 				>
 				</field>
 

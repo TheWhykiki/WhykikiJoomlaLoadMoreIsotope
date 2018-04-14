@@ -16,7 +16,7 @@ body{
   padding: @font_size_filter/2 @font_size_filter;
   margin-bottom: 10px;
   border-radius: @border_radius_filter;
-  border: @border_width_filter @border_style @border_color_filter;
+  border: @border_width_filter @border_style_filter @border_color_filter;
   background: @color_filter;
   color: @font_color_filter;
   font-size: @font_size_filter;
@@ -27,11 +27,13 @@ body{
 
 .button:hover {
   background: @button_hover_color_filter;
+  color: @font_hover_color_filter;
 }
 
 .button:active,
 .button.is-checked {
   background: @button_hover_color_filter;
+  color: @font_hover_color_filter;
 }
 
 .button.is-checked {
@@ -59,7 +61,7 @@ body{
 }
 
 .button-group .button:first-child { border-radius: @border_radius_filter 0 0 @border_radius_filter;  }
-.button-group .button:last-child { border-radius: 0 @border_radius_filter @border_radius_filter 0; border-right: @border_width_filter @border_style @border_color_filter;}
+.button-group .button:last-child { border-radius: 0 @border_radius_filter @border_radius_filter 0; border-right: @border_width_filter @border_style_filter @border_color_filter;}
 
 /* ---- isotope ---- */
 
@@ -85,7 +87,7 @@ body{
   margin: @box_margin_vertical @box_margin;
   padding: @box_padding;
   color: @post_font_color;
-  border: @border_width @border_style @border_color;
+  border: @border_width @border_style_posts @border_color;
   border-radius: @border_radius;
   box-shadow: @boxShadow;
   -webkit-box-shadow: @boxShadow;
@@ -116,7 +118,7 @@ body{
     padding: @font_size_filter/2 @font_size_filter;
     margin-bottom: 10px;
     border-radius: @border_radius_filter;
-    border: @border_width_filter @border_style @border_color_filter;
+    border: @border_width_filter @border_style_posts @border_color_filter;
     background: @color_filter;
     color: @font_color_filter;
     font-size: @font_size_filter;
@@ -176,7 +178,7 @@ body{
 }
 
 .loadMoreButton span{
-  border: @border_width_button @border_style @border_color_button;
+  border: @border_width_button @border_style_loadmore @border_color_button;
   font-size: @button_font_size;
   font-weight: 400;
   color: @font_color_button;
@@ -188,6 +190,7 @@ body{
 
 .loadMoreButton span:hover{
   background:@button_hover_color;
+  color: @font_hover_color_button;
 }
 .loadMoreButton:focus, #backButton:focus {
   outline: none;
