@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later;</license>
 	<authorEmail>info@whykiki.de</authorEmail>
 	<authorUrl>quasilectrisches-medieninstitut.de</authorUrl>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>MOD_WHY_LOADMORE_MASONRY_DESCRIPTION</description>
 	<updateservers>
 		<server type="extension" name="News Articles Load More" priority="1">http://downloads.whykiki.rocks/updateLoadMoreMasonry.xml</server>
@@ -239,17 +239,6 @@
 						label="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_VALUE_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_IMAGE_FILTER_VALUE_DESC"
 						showon="image:1"
-				>
-				</field>
-
-				<field
-						name="hover_color"
-						type="color"
-						default="rgba(136, 136, 136, 1)"
-						format="rgba"
-						label="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_LABEL"
-						description="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_DESC"
-						class="chzn-color"
 				>
 				</field>
 
@@ -534,6 +523,17 @@
 						format="rgba"
 						label="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_LABEL"
 						description="MOD_WHY_LOADMORE_MASONRY_POST_FONT_COLOR_DESC"
+				>
+				</field>
+
+				<field
+						name="hover_color"
+						type="color"
+						default="rgba(136, 136, 136, 1)"
+						format="rgba"
+						label="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_LABEL"
+						description="MOD_WHY_LOADMORE_MASONRY_HOVER_COLOR_DESC"
+						class="chzn-color"
 				>
 				</field>
 

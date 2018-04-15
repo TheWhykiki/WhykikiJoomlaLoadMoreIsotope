@@ -149,7 +149,7 @@ $textNeu = preg_replace($muster, "", $text);
 						<?php if($titleFlag == 1): ?>
 							<?php if($linkTitles == 1): ?>
                                 <h3 class="blogHeadlinePost">
-                                    <a class="<?php echo $item['value']; ?>" href="<?php echo $link; ?>">
+                                    <a href="<?php echo $link; ?>">
                                             <?php echo $item['title']; ?>
                                     </a>
                                 </h3>
