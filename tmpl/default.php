@@ -13,14 +13,14 @@ defined('_JEXEC') or die;
 ?>
 
 <?php if($filtering == 1): ?>
-<div class="filterPosition">
-    <div class="button-group button-group<?php echo $module->id; ?> filters-button-group<?php echo $module->id; ?>">
-        <button class="button is-checked" data-filter="*"><?php echo JText::_("MOD_WHY_LOADMORE_MASONRY_SHOW_ALL"); ?></button>
-		<?php foreach($categoriesList as $category): ?>
-            <button class="button" data-filter=".filterValue<?php echo $category->id; ?>"><?php echo $category->title; ?></button>
-		<?php endforeach; ?>
+    <div class="filterPosition">
+        <div class="button-group button-group<?php echo $module->id; ?> filters-button-group<?php echo $module->id; ?>">
+            <button class="button is-checked" data-filter="*"><?php echo JText::_("MOD_WHY_LOADMORE_MASONRY_SHOW_ALL"); ?></button>
+			<?php foreach($categoriesList as $category): ?>
+                <button class="button" data-filter=".filterValue<?php echo $category->id; ?>"><?php echo $category->title; ?></button>
+			<?php endforeach; ?>
+        </div>
     </div>
-</div>
 <?php endif; ?>
 <div class="grid<?php echo $module->id; ?> grid">
 
@@ -53,14 +53,7 @@ defined('_JEXEC') or die;
                 return name.match( /ium$/ );
             }
         };
-// bind filter button click
-        jQuery('.filters-button-group<?php echo $module->id; ?>').on( 'click', 'button', function() {
-            var filterValue = jQuery( this ).attr('data-filter');
-// use filterFn if matches value
-            filterValue = filterFns[ filterValue ] || filterValue;
-            $grid.isotope({ filter: filterValue });
 
-        });
 // change is-checked class on buttons
         jQuery('.button-group<?php echo $module->id; ?>').each( function( i, buttonGroup ) {
             var $buttonGroup = jQuery( buttonGroup );
@@ -69,18 +62,19 @@ defined('_JEXEC') or die;
                 jQuery( this ).addClass('is-checked');
             });
         });
-
+        var filterID = 0;
         (function(jQuery){
             jQuery.fn.loaddata = function(options) {// Settings
                 var settings = jQuery.extend({
-                    loading_gif_url	: '/modules/mod_articles_news_load_more/images/ajax-loader.gif', //url to loading gif
+                    loading_gif_url	: 'modules/mod_articles_news_load_more_masonry/images/ajax-loader.gif', //url to loading gif
                     //end_record_text	: 'No more records found!', //no more records to load
-                    data_url 		: '/modules/mod_articles_news_load_more_masonry/tmpl/ajax.php', //url to PHP page
+                    data_url 		: 'modules/mod_articles_news_load_more_masonry/tmpl/ajax.php', //url to PHP page
                     moduleID: '<?php echo $moduleID; ?>',
                     menuItem: '<?php echo $menuItem; ?>',
+                    filterID: filterID,
                     start_page 		: 1 //initial page
                 }, options);
-
+                console.log(settings);
                 var el = this;
                 loading  = false;
                 end_record = false;
@@ -88,6 +82,7 @@ defined('_JEXEC') or die;
 
 				<?php if($loadingType == 1): ?>
                 jQuery( ".loadMoreButton<?php echo $module->id; ?>" ).click(function() {
+
                     contents(el, settings); //load content chunk
                 });
 				<?php else: ?>
@@ -124,7 +119,8 @@ defined('_JEXEC') or die;
                         {
                             'page': settings.start_page,
                             'moduleID': settings.moduleID,
-                            'menuItem': settings.menuItem
+                            'menuItem': settings.menuItem,
+                            'filterID': settings.filterID
                         },
 
                         function(data){ //jQuery Ajax post
@@ -145,7 +141,8 @@ defined('_JEXEC') or die;
                             loading = false;  //set loading flag off
                             load_img.remove(); //remove loading img
 
-                            var $content = jQuery(data)
+                            var $content = jQuery(data);
+
                             $grid.append( $content )
                             // add and lay out newly appended items
                                 .isotope( 'appended', $content );
@@ -155,6 +152,20 @@ defined('_JEXEC') or die;
                             settings.start_page ++; //page increment
                         })
                 }
+
+                // bind filter button click
+
+                jQuery('.filters-button-group<?php echo $module->id; ?>').on( 'click', 'button', function() {
+                    var filterValue = jQuery( this ).attr('data-filter');
+                    filterID = jQuery( this ).attr('data-filter');
+                    filterID = filterID.replace(".filterValue", "");
+                    settings.filterID = filterID;
+                    contents(el, settings); //load content chunk
+// use filterFn if matches value
+                    filterValue = filterFns[ filterValue ] || filterValue;
+                    $grid.isotope({ filter: filterValue });
+
+                });
             }
 
         })(jQuery);
@@ -162,7 +173,7 @@ defined('_JEXEC') or die;
         jQuery(".grid<?php echo $module->id; ?>").loaddata();
 
     });
-    
+
 </script>
 
 <?php if($loadingType == 1): ?>

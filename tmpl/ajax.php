@@ -11,6 +11,7 @@ $db = JFactory::getDbo();
 // Get module params
 
 $moduleID = $app->input->post->get('moduleID');
+$filterValue = $app->input->post->get('filterID');
 $moduleQuery = $db->getQuery(true);
 $moduleQuery->select('a.*');
 $moduleQuery->from($db->quoteName('#__modules', 'a'));
@@ -40,7 +41,13 @@ foreach($categoryIDs as $catid){
 	$catsString .= $catid.",";
 }
 $catsString=rtrim($catsString,", ");
-$categories = $catsString;
+
+if($filterValue == 0){
+	$categories = $catsString;
+}
+else{
+	$categories = $filterValue;
+}
 
 $linkTitles = $params->link_titles;
 $titleFlag = $params->item_title;
